@@ -3,11 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title> Generador de tickets </title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <input type="button" value=" enviar">
-    hola
-
+    <header>
+        <h1> Generador de Tickets </h1>
+        <nav>
+            <ul id="barra-navegacion">
+                <li class="selected"> Abrir tickets </li>
+                <li> Consultar Tickets </li>
+                <li> Gestionar Tickets</li>
+                <li> Reportes </li>
+                
+            </ul>
+        </nav>
+    </header>
+    <section class="pantalla">
+        <h2> Generar un Nuevo Ticket </h2>
+        <form id= "formulario"> 
+            <div>
+            <fieldset>
+                <legend> Titulo </legend>
+                <input type="text" id="Titulo" name="Titulo" required>
+            </fieldset>
+            <fieldset>
+                <legend> Tipo De Ticket</legend>
+                    <select name="Tipo" >
+                    <option value=" Red "> Red</option>
+                    <option value=" Software"> Software</option>
+                    <option value=" Hardware"> Hardware</option>
+                    <option value=" Telefonia "> Telefonia</option>
+                </select>
+            </fieldset>
+            <fieldset>
+                <legend> Descripcion </legend>
+                <textarea name="Descripcion" id="descripcion" 
+                cols="30" rows="10 ">
+            </textarea>
+            </fieldset>
+        </div>
+        <div>
+            <fieldset>
+                <legend> Prioridad </legend>
+                <select name="Prioridad" >
+                    <option value=" 1 "> Baja</option>
+                    <option value=" 2">Media </option>
+                    <option value=" 3">Alta</option>
+                    <option value=" 4 ">Urgente</option>
+                    </select>
+            </fieldset>
+            <input type="file" name="Imagen" id="imagen-boton-preview" accept="image/*">
+            <img src="" alt="" id="imagen-preview">
+        </div>
+        <div> <input type="submit" value="Enviar"> </div>
+          
+        </form>
+    </section>
+    <section class="pantalla hidden">
+<!-- segundo secti -->
+    </section>
+    <section class="pantalla hidden">
+<!-- tercer sec -->
+    </section>
+    <section class="pantalla hidden">
+<!-- cuarto sec -->
+    </section>
+     <div class=" contenedor-cargando">
+        <div class="cargando"> 
+            <span class="loader"> </span>
+        </div>
+            
+      </div> 
+<script src="js/script.js"></script>
+<script src="js/menu.js"></script>
 </body>
 </html>
