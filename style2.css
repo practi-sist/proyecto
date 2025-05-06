@@ -1,0 +1,199 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  padding: 20px;
+  margin: 0;
+}
+
+h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 4px;
+  color: #333;
+}
+
+
+.busqueda {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+  /* Espacio entre input y botón */
+  max-width: 800px;
+}
+
+#consultas {
+  flex: 1;
+  border: 1px solid #888;
+  border-radius: 10px;
+  padding: 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+#consultas legend {
+  font-size: 14px;
+  color: #888;
+  padding: 0 8px;
+}
+
+#consultar {
+  width: 80px;
+  height: 5px;
+  padding: 5px 5px 5px 35px;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  background-repeat: no-repeat;
+  background-size: 15px;
+  background-position: 10px center;
+  background-color: transparent;
+}
+
+
+#buscar-ticket:hover {
+  background-color: #2196f3;
+}
+
+button[type="button"],
+button[type="search"] {
+  background-color: #42A5F5;
+  color: white;
+  font-size: 13px;
+  padding: 14px 60px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #2196f3;
+}
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  border: 1px solid #333;
+}
+
+thead {
+  background-color: #f4f4f4;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 12px;
+  border: 1px solid #333;
+  font-size: 14px;
+}
+
+
+.icon-eye {
+  font-size: 30px;
+  text-align: center;
+  cursor: pointer;
+
+}
+
+.contenedor-vista {
+  position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color:rgba(25, 25, 25, 0.447);
+    display: flex;
+}
+
+.vista {
+  background-color: #fff;
+  padding: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centrar */
+  background-color: rgba(255, 255, 255, 0);
+  padding: 20px;
+  border-radius: 5px;
+}
+
+
+
+
+.btn-icono img {
+
+  transition: transform 0.2s ease;
+}
+
+.btn-icono:hover img {
+  transform: scale(1.1);
+}
+
+table td.icon-eye {
+  padding: 2px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.btn-icono {
+  width: 100%;
+  height: 100%;
+  background: none;
+  border: none;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.btn-icono {
+  width: 100%;
+  height: 100%;
+  background: none;
+  border: none;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.btn-icono-editar {
+  width: 100%;
+  height: 100%;
+  background: none;
+  border: none;
+  padding: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.btn-icono,
+.btn-icono-editar {
+  background: none;
+  border: none;
+  padding: 6px;
+  cursor: pointer;
+}
+
+.btn-icono img,
+.btn-icono-editar img {
+  margin: auto;
+}
+
+.editeye {
+  display: flex;
+}

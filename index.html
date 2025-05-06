@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Generador de tickets </title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="style3.css">
 </head>
+
 <body>
     <header>
         <h1> Generador de Tickets </h1>
@@ -15,67 +19,228 @@
                 <li> Consultar Tickets </li>
                 <li> Gestionar Tickets</li>
                 <li> Reportes </li>
-                
+
             </ul>
         </nav>
     </header>
     <section class="pantalla">
         <h2> Generar un Nuevo Ticket </h2>
-        <form id= "formulario"> 
+        <form id="formulario">
             <div>
-            <fieldset>
-                <legend> Titulo </legend>
-                <input type="text" id="Titulo" name="Titulo" required>
-            </fieldset>
-            <fieldset>
-                <legend> Tipo De Ticket</legend>
-                    <select name="Tipo" >
-                    <option value=" Red "> Red</option>
-                    <option value=" Software"> Software</option>
-                    <option value=" Hardware"> Hardware</option>
-                    <option value=" Telefonia "> Telefonia</option>
-                </select>
-            </fieldset>
-            <fieldset>
-                <legend> Descripcion </legend>
-                <textarea name="Descripcion" id="descripcion" 
-                cols="30" rows="10 ">
-            </textarea>
-            </fieldset>
-        </div>
-        <div>
-            <fieldset>
-                <legend> Prioridad </legend>
-                <select name="Prioridad" >
-                    <option value=" 1 "> Baja</option>
-                    <option value=" 2">Media </option>
-                    <option value=" 3">Alta</option>
-                    <option value=" 4 ">Urgente</option>
+                <fieldset>
+                    <legend> Titulo </legend>
+                    <input type="text" id="Titulo" name="Titulo" required>
+                </fieldset>
+                <fieldset>
+                    <legend> Tipo De Ticket</legend>
+                    <select name="Tipo">
+                        <option value=" Red "> Red</option>
+                        <option value=" Software"> Software</option>
+                        <option value=" Hardware"> Hardware</option>
+                        <option value=" Telefonia "> Telefonia</option>
                     </select>
-            </fieldset>
-            <input type="file" name="Imagen" id="imagen-boton-preview" accept="image/*">
-            <img src="" alt="" id="imagen-preview">
-        </div>
-        <div> <input type="submit" value="Enviar"> </div>
-          
+                </fieldset>
+                <fieldset>
+                    <legend> Descripcion </legend>
+                    <textarea name="Descripcion" id="descripcion" cols="30" rows="10 ">
+            </textarea>
+                </fieldset>
+            </div>
+            <div>
+                <fieldset>
+                    <legend> Prioridad </legend>
+                    <select name="Prioridad">
+                        <option value=" 1 "> Baja</option>
+                        <option value=" 2">Media </option>
+                        <option value=" 3">Alta</option>
+                        <option value=" 4 ">Urgente</option>
+                    </select>
+                </fieldset>
+                <input type="file" name="Imagen" id="imagen-boton-preview" accept="image/*">
+                <img src="" alt="" id="imagen-preview">
+            </div>
+            <div> <input type="submit" value="Enviar"> </div>
+
         </form>
     </section>
     <section class="pantalla hidden">
-<!-- segundo secti -->
+        <!-- segundo secti -->
+        <h2>Consultar Tickets</h2>
+
+<div class="busqueda">
+    <fieldset id="consultas">
+        <legend>Consulta</legend>
+        <input type="text" id="consultar" placeholder="Buscar...">
+    </fieldset>
+    <button type="button" id="buscar-ticket">Buscar</button>
+</div>
+
+<br>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Nro. Ticket</th>
+            <th>Solicitado Por</th>
+            <th>Atendido Por</th>
+            <th>Progreso</th>
+            <th>Tipo</th>
+            <th>Prioridad</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody id="ticket-body">
+        <tr>
+            <td>1</td>
+            <td>Yamilet Correo</td>
+            <td>Kervi Falcón</td>
+            <td>Abierto</td>
+            <td>Telefonía</td>
+            <td>Media</td>
+            <td class="icon-eye">
+                
+                    <img src="img/icon-ojo.jpg" alt="" width="24" height="24">
+               
+            </td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Paul Portilla</td>
+            <td>Kervi Falcón</td>
+            <td>En Progreso</td>
+            <td>Red</td>
+            <td>Alta</td>
+            <td class="icon-eye">
+                
+                    <img src="img/icon-ojo.jpg" alt="" width="24" height="24">
+                
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="contenedor-vista" >
+    <div class="vista" id="detalle-vista" >
+        <div id="display"> 
+             <h3>Detalles</h3><button id="btn-cerrar-detalle">X</button>
+            
+        </div>
+        
+        <p><strong>Título:</strong> -</p>
+        <p><strong>Atendido Por:</strong> -</p>
+        <p><strong>Solicitado Por:</strong> -</p>
+        <p><strong>Tipo:</strong> -</p>
+        <p><strong>Prioridad:</strong> -</p>
+        <p><strong>Descripción:</strong> -</p>
+        <p><strong>Progreso:</strong> -</p>
+        <p><strong>Comentarios:</strong> -</p>
+        <p><strong>Fecha de Creación:</strong> -</p>
+        <p><strong>Fecha de Cierre:</strong> -</p>
+        
+    </div>
+</div>
+
     </section>
     <section class="pantalla hidden">
-<!-- tercer sec -->
+
+        <h2>Gestionar Tickets</h2>
+
+        <div class="busqueda">
+            <fieldset id="consultas">
+                <legend>Consulta</legend>
+                <input type="text" id="consultar" placeholder="Buscar...">
+            </fieldset>
+            <button type="button" id="buscar-ticket">Buscar</button>
+        </div>
+
+        <br>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Nro. Ticket</th>
+                    <th>Solicitado Por</th>
+                    <th>Atendido Por</th>
+                    <th>Título</th>
+                    <th>Tipo</th>
+                    <th>Prioridad</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="ticket-body">
+                <tr>
+                    <td>1</td>
+                    <td>Yamilet Correo</td>
+                    <td>Kervi Falcón</td>
+                    <td>Teléfono no Funciona</td>
+                    <td>Telefonía</td>
+                    <td>Media</td>
+                    <td class="editeye">
+                        <button class="btn-icono" title="Ver Detalles">
+                            <img src="img/icon-ojo.jpg" alt="Ver Detalles" width="24" height="24">
+                        </button>
+                        <button class="btn-icono-editar" title="Editar">
+                            <img src="img/icon-editar.jpg" alt="Editar" width="24" height="24">
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Paul Portilla</td>
+                    <td>Kervi Falcón</td>
+                    <td>Sin Internet</td>
+                    <td>Red</td>
+                    <td>Alta</td>
+                    <td class="editeye">
+                        <button class="btn-icono" title="Ver Detalles">
+                            <img src="img/icon-ojo.jpg" alt="Ver Detalles" width="24" height="24">
+                        </button>
+                        <button class="btn-icono-editar" title="Editar">
+                            <img src="img/icon-editar.jpg" alt="Editar" width="24" height="24">
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="contenedor-vista" >
+            <div class="vista" id="detalle-vista" >
+                <div id="display"> 
+                    <h3>Detalles</h3><button id="btn-cerrar-detalle">X</button>
+                   
+               </div>
+               
+                <p><strong>Título:</strong> -</p>
+                <p><strong>Atendido Por:</strong> -</p>
+                <p><strong>Solicitado Por:</strong> -</p>
+                <p><strong>Tipo:</strong> -</p>
+                <p><strong>Prioridad:</strong> -</p>
+                <p><strong>Descripción:</strong> -</p>
+                <p><strong>Progreso:</strong> -</p>
+                <p><strong>Comentarios:</strong> -</p>
+                <p><strong>Fecha de Creación:</strong> -</p>
+                <p><strong>Fecha de Cierre:</strong> -</p>
+                
+            </div>
+        </div>
+        
+
     </section>
     <section class="pantalla hidden">
-<!-- cuarto sec -->
+        <!-- cuarto sec -->
+         <div id="reporteTicket">
+            <h2> Generar Nuevo Reporte </h2>
+         </div>
+         <button type="button" id="reporte-de-Ticket"> generar reporte de ticket </button>
     </section>
-     <div class=" contenedor-cargando">
-        <div class="cargando"> 
+    <div class=" contenedor-cargando">
+        <div class="cargando">
             <span class="loader"> </span>
         </div>
-            
-      </div> 
-<script src="js/script.js"></script>
-<script src="js/menu.js"></script>
+
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/menu.js"></script>
 </body>
+
 </html>
