@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="style2.css">
     <link rel="stylesheet" href="style3.css">
+    <script src="js/sweetalert2@11.js"></script>
 </head>
 
 <body>
@@ -29,11 +30,11 @@
             <div>
                 <fieldset>
                     <legend> Titulo </legend>
-                    <input type="text" id="Titulo" name="Titulo" required>
+                    <input type="text" id="Titulo" name="titulo" required>
                 </fieldset>
                 <fieldset>
                     <legend> Tipo De Ticket</legend>
-                    <select name="Tipo">
+                    <select name="tipo">
                         <option value=" Red "> Red</option>
                         <option value=" Software"> Software</option>
                         <option value=" Hardware"> Hardware</option>
@@ -42,21 +43,21 @@
                 </fieldset>
                 <fieldset>
                     <legend> Descripcion </legend>
-                    <textarea name="Descripcion" id="descripcion" cols="30" rows="10 ">
+                    <textarea name="descripcion" id="descripcion" cols="30" rows="10 ">
             </textarea>
                 </fieldset>
             </div>
             <div>
                 <fieldset>
                     <legend> Prioridad </legend>
-                    <select name="Prioridad">
+                    <select name="prioridad">
                         <option value=" 1 "> Baja</option>
                         <option value=" 2">Media </option>
                         <option value=" 3">Alta</option>
                         <option value=" 4 ">Urgente</option>
                     </select>
                 </fieldset>
-                <input type="file" name="Imagen" id="imagen-boton-preview" accept="image/*">
+                <input type="file" name="imagen" id="imagen-boton-preview" accept="image/*">
                 <img src="" alt="" id="imagen-preview">
             </div>
             <div> <input type="submit" value="Enviar"> </div>
@@ -64,85 +65,64 @@
         </form>
     </section>
     <section class="pantalla hidden">
+
         <!-- segundo secti -->
         <h2>Consultar Tickets</h2>
+        <form class="busqueda" id="form-buscar-pantalla2">
+            <fieldset id="consultas">
+                <legend>Consulta</legend>
+                <input type="text" name="contenido" id="consultar" placeholder="Buscar...">
+            </fieldset>
+            <input type="submit" id="buscar-ticket" value="Buscar">
+        </form>
+        <br>
 
-<div class="busqueda">
-    <fieldset id="consultas">
-        <legend>Consulta</legend>
-        <input type="text" id="consultar" placeholder="Buscar...">
-    </fieldset>
-    <button type="button" id="buscar-ticket">Buscar</button>
-</div>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Nro. Ticket</th>
+                    <th>Solicitado Por</th>
+                    <th>Atendido Por</th>
+                    <th>Progreso</th>
+                    <th>Tipo</th>
+                    <th>Prioridad</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="ticket-body-pantalla2">
+                <tr>
+                    <td>1</td>
+                    <td>Yamilet Correo</td>
+                    <td>Kervi Falcón</td>
+                    <td>Abierto</td>
+                    <td>Telefonía</td>
+                    <td>Media</td>
+                    <td class="icon-eye">
+                        <img src="img/icon-ojo.jpg" alt="" width="24" height="24">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
-<br>
-
-<table border="1">
-    <thead>
-        <tr>
-            <th>Nro. Ticket</th>
-            <th>Solicitado Por</th>
-            <th>Atendido Por</th>
-            <th>Progreso</th>
-            <th>Tipo</th>
-            <th>Prioridad</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody id="ticket-body">
-        <tr>
-            <td>1</td>
-            <td>Yamilet Correo</td>
-            <td>Kervi Falcón</td>
-            <td>Abierto</td>
-            <td>Telefonía</td>
-            <td>Media</td>
-            <td class="icon-eye">
-                
-                    <img src="img/icon-ojo.jpg" alt="" width="24" height="24">
-               
-            </td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Paul Portilla</td>
-            <td>Kervi Falcón</td>
-            <td>En Progreso</td>
-            <td>Red</td>
-            <td>Alta</td>
-            <td class="icon-eye">
-                
-                    <img src="img/icon-ojo.jpg" alt="" width="24" height="24">
-                
-            </td>
-        </tr>
-    </tbody>
-</table>
-
-<div class="contenedor-vista" >
-    <div class="vista" id="detalle-vista" >
-        <div id="display"> 
-             <h3>Detalles</h3><button id="btn-cerrar-detalle">X</button>
-            
+        <div class="contenedor-vista hidden" id="detalles-segunda-pantalla">
+            <div class="vista" id="detalle-vista">
+                <div id="display">
+                    <h3>Detalles</h3><button id="btn-cerrar-detalle">X</button>
+                </div>
+                <p><strong>Título:</strong> -</p>
+                <p><strong>Atendido Por:</strong> -</p>
+                <p><strong>Solicitado Por:</strong> -</p>
+                <p><strong>Tipo:</strong> -</p>
+                <p><strong>Prioridad:</strong> -</p>
+                <p><strong>Descripción:</strong> -</p>
+                <p><strong>Progreso:</strong> -</p>
+                <p><strong>Comentarios:</strong> -</p>
+                <p><strong>Fecha de Creación:</strong> -</p>
+                <p><strong>Fecha de Cierre:</strong> -</p>
+            </div>
         </div>
-        
-        <p><strong>Título:</strong> -</p>
-        <p><strong>Atendido Por:</strong> -</p>
-        <p><strong>Solicitado Por:</strong> -</p>
-        <p><strong>Tipo:</strong> -</p>
-        <p><strong>Prioridad:</strong> -</p>
-        <p><strong>Descripción:</strong> -</p>
-        <p><strong>Progreso:</strong> -</p>
-        <p><strong>Comentarios:</strong> -</p>
-        <p><strong>Fecha de Creación:</strong> -</p>
-        <p><strong>Fecha de Cierre:</strong> -</p>
-        
-    </div>
-</div>
-
     </section>
     <section class="pantalla hidden">
-
         <h2>Gestionar Tickets</h2>
 
         <div class="busqueda">
@@ -202,13 +182,11 @@
                 </tr>
             </tbody>
         </table>
-        <div class="contenedor-vista" >
-            <div class="vista" id="detalle-vista" >
-                <div id="display"> 
+        <div class="contenedor-vista">
+            <div class="vista" id="detalle-vista">
+                <div id="display">
                     <h3>Detalles</h3><button id="btn-cerrar-detalle">X</button>
-                   
-               </div>
-               
+                </div>
                 <p><strong>Título:</strong> -</p>
                 <p><strong>Atendido Por:</strong> -</p>
                 <p><strong>Solicitado Por:</strong> -</p>
@@ -219,18 +197,17 @@
                 <p><strong>Comentarios:</strong> -</p>
                 <p><strong>Fecha de Creación:</strong> -</p>
                 <p><strong>Fecha de Cierre:</strong> -</p>
-                
+
             </div>
         </div>
-        
-
     </section>
+
     <section class="pantalla hidden">
         <!-- cuarto sec -->
-         <div id="reporteTicket">
+        <div id="reporteTicket">
             <h2> Generar Nuevo Reporte </h2>
-         </div>
-         <button type="button" id="reporte-de-Ticket"> generar reporte de ticket </button>
+        </div>
+        <button type="button" id="reporte-de-Ticket"> generar reporte de ticket </button>
     </section>
     <div class=" contenedor-cargando">
         <div class="cargando">
@@ -240,6 +217,7 @@
     </div>
 
     <script src="js/script.js"></script>
+    <script src="js/script2.js"></script>
     <script src="js/menu.js"></script>
 </body>
 
