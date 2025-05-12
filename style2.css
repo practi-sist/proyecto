@@ -197,3 +197,33 @@ td {
 .editeye {
   display: flex;
 }
+
+.paginacion1 {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.paginacion1 ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  gap: 5px
+}
+
+.paginacion1 ul li {
+  padding: 10px;
+  background-color: #2196f3;
+  color: white;
+  border-radius: 10px;
+}
+
+.paginacion1 ul li.enter {
+  background-color: #87bfed;
+}
+
+.paginacion1 ul li:hover { 
+ cursor: pointer;
+ transform: scale(1.1);
+ background-color: #bad5eb;
+}
