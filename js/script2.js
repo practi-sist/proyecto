@@ -1,4 +1,4 @@
-const detallesSegPan = document.getElementById('t');
+const detallesSegPan = document.getElementById('detalles-segunda-pantalla');
 const ticketsPantalla2 = document.getElementById('ticket-body-pantalla2');
 const formBuscarPantalla2 = document.getElementById('form-buscar-pantalla2');
 var paginaTicket = 1;
@@ -7,16 +7,17 @@ const resultadosPorPagina = 10;
 
 formBuscarPantalla2.addEventListener('submit', async (e) => {
     e.preventDefault();
-
-    paginaTicket = 1;
     const formData = new FormData(formBuscarPantalla2);
     const formDataJson = Object.fromEntries(formData.entries());
     obtenerDatosTicket(formDataJson)
 })
 
 
-async function obtenerDatosTicket(formData) {
+async function obtenerDatosTicket(formData, nuevaPagina) {
+    paginaTicket = nuevaPagina ? nuevaPagina : 1;
+
     const URL = "php/ObtenerTickets.php?contenido=" + formData.contenido + "&pagina=" + paginaTicket + "&resultadosPorPagina=" + resultadosPorPagina;
+
     const modalCargando = document.querySelector('.contenedor-cargando');
     try {
         modalCargando.style.display = "flex";
@@ -81,18 +82,13 @@ function mostrarTicket(datos) {
             tr.appendChild(td7);
             ticketsPantalla2.appendChild(tr);
         });
-
     }
-
 }
 
 function saludar() {
     console.log("Hola")
 }
 
-function verDetalles(id) {
-    console.log(id)
-}
 
 function prioridad(prioridad) {
     switch (prioridad) {
@@ -111,9 +107,10 @@ function prioridad(prioridad) {
     }
 }
 
+
 function paginacion(filas) {
     const paginacionHtml = document.querySelector('.paginacion1');
-
+    const formData = new FormData(formBuscarPantalla2);
     paginacionHtml.innerHTML = "";
     const totalPaginas = Math.ceil(filas / resultadosPorPagina);
     console.log(totalPaginas)
@@ -130,11 +127,8 @@ function paginacion(filas) {
                 li.classList.add('enter');
             } else {
                 li.addEventListener('click', () => {
-                    paginaTicket = i + 1;
-                    const formData = new FormData(formBuscarPantalla2);
-                    SetTimeout(() => {
-                        obtenerDatosTicket(formData)
-                    }, 500)
+                    
+                    obtenerDatosTicket(Object.fromEntries(formData.entries()), i + 1);
                 })
             }
             ul.appendChild(li);
@@ -151,12 +145,8 @@ function paginacion(filas) {
                     li.classList.add('enter');
                 } else {
                     li.addEventListener('click', () => {
-                        paginaTicket = paginaTicket + i - 1;
-                        console.log(paginaTicket)
-                        setTimeout(() => {
-                            const formData = new FormData(formBuscarPantalla2);
-                            obtenerDatosTicket(formData)
-                        }, 500)
+
+                        obtenerDatosTicket(Object.fromEntries(formData.entries()), paginaTicket + i - 1);
                     })
                 }
                 ul.appendChild(li);
@@ -170,8 +160,7 @@ function paginacion(filas) {
         const li = document.createElement('li');
         li.textContent = "«";
         li.addEventListener('click', () => {
-            paginaTicket = 1;
-            formBuscarPantalla2.querySelector('input[type="submit"]').click();
+            obtenerDatosTicket(Object.fromEntries(formData.entries()), 1);
         })
         const li2 = document.createElement('li');
         li2.textContent = "...";
@@ -183,12 +172,8 @@ function paginacion(filas) {
         const li = document.createElement('li');
         li.textContent = "»";
         li.addEventListener('click', () => {
-            paginaTicket = totalPaginas;
-            /*             formBuscarPantalla2.querySelector('input[type="submit"]').click(); */
-            const formData = new FormData(formBuscarPantalla2);
-            SetTimeout(() => {
-                obtenerDatosTicket(formData)
-            }, 500)
+
+            obtenerDatosTicket(Object.fromEntries(formData.entries()), totalPaginas);
 
         })
         const li2 = document.createElement('li');
@@ -199,8 +184,6 @@ function paginacion(filas) {
 
     paginacionHtml.appendChild(ul);
 
-
-
     /*     <ul>
         <li> « </li>
         <li> 1</li>
@@ -208,4 +191,58 @@ function paginacion(filas) {
         <li> 3 </li>
         <li>»</li>
     </ul> */
+}
+
+
+
+async function verDetalles(id) {
+    detallesSegPan.classList.remove('hidden');
+    detallesSegPan.innerHTML = "";
+    const url = "php/ObtenerTicketID.php?id=" + id;
+    let datos = {};
+    try {
+        const response = await fetch(url)
+
+        if (!response.ok) {
+            throw new Error('Error al obtener los datos')
+        }
+        datos = await response.json();
+
+
+    } catch (error) {
+        console.log(error)
+    }
+
+    if (datos['datos'].length > 0) {
+        const d = datos['datos'][0];
+        html = "";
+        html += `
+            <div class="vista" id="detalle-vista">
+                <div id="display">
+                    <h3>Detalles</h3><button id="btn-cerrar-detalle" 
+                    onclick="cerrarDetalles()" 
+                    >X</button>
+                </div>
+                <p><strong>Título:</strong> ${d.titulo}</p>
+                <p><strong>Atendido Por:</strong> ${d.usuario_atendio ?? '-'}</p>
+                <p><strong>Solicitado Por:</strong>${d.usuario_solicito}</p>
+                <p><strong>Tipo:</strong> ${d.tipo_ticket}</p>
+                <p><strong>Prioridad:</strong> ${prioridad(d.prioridad)}</p>
+                <p><strong>Descripción:</strong> ${d.descripcion}</p>
+                <p><strong>Progreso:</strong>${d.progreso}</p>
+                <p><strong>Comentarios:</strong> ${d.comentarios_sistemas ?? '-'}</p>
+                <p><strong>Fecha de Creación:</strong> ${d.fecha_creacion}</p>
+                <p><strong>Fecha de Cierre:</strong> ${d.fecha_cierre ?? '-'}</p>
+                </div>
+    `
+    detallesSegPan.innerHTML = html;
+
+    } else {
+        throw new Error('No hay datos para mostrar')
+    }
+
+}
+
+function cerrarDetalles() {
+    detallesSegPan.classList.add('hidden');
 }
